@@ -18,6 +18,12 @@ jobs:
     - name: Install dependencies
       run: pip install pytest requests pytest-html
 
+    - name: Remove old report.html if exists
+      run: |
+        if [ -f report.html ]; then
+          rm report.html
+        fi
+
     - name: Run tests
       run: pytest test_api.py --html=report.html --self-contained-html
 
