@@ -21,11 +21,15 @@ jobs:
     - name: Run tests
       run: pytest test_api.py --html=report.html --self-contained-html
 
-    - name: List files
-      run: ls -la
+    - name: Check if report.html exists
+      run: |
+        if [ ! -f report.html ]; then
+          echo "report.html not found!"
+          exit 1
+        fi
 
     - name: Upload test report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: test-report
         path: report.html
