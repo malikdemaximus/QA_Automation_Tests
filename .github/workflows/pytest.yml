@@ -21,8 +21,11 @@ jobs:
     - name: Run tests
       run: pytest test_api.py --html=report.html --self-contained-html
 
+    - name: List files
+      run: ls -la
+
     - name: Upload test report
       uses: actions/upload-artifact@v2
       with:
         name: test-report
-        path: ./report.html
+        path: report.html
